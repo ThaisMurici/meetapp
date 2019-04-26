@@ -1,19 +1,15 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import '~/config/ReactotronConfig';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-});
+import React from 'react';
+import { Provider } from 'react-redux';
+import { View } from 'react-native';
+
+import store from '~/store';
 
 const App = () => (
-  <View style={styles.container}>
-    <Text style={styles.welcome}>Welcome to React Native!</Text>
-  </View>
+  <Provider store={store}>
+    <View />
+  </Provider>
 );
 
 export default App;
