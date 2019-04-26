@@ -1,9 +1,26 @@
 import React from 'react';
 
-import { Background } from './styles';
+import { StatusBar } from 'react-native';
+import { Container, Logo, Form } from './styles';
+
+import Button from '~/components/Button';
+import FormInput from '~/components/FormInput';
+import GradientBackground from '~/components/GradientBackground';
+import TextButton from '~/components/TextButton';
 
 const SignIn = () => (
-  <Background colors={['#22202b', '#28212b']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} />
+  <GradientBackground>
+    <StatusBar barStyle="light-content" />
+    <Container>
+      <Logo>M</Logo>
+      <Form>
+        <FormInput label="E-mail" placeholder="Digite seu e-mail" value="" />
+        <FormInput label="Senha" placeholder="Sua senha secreta" value="" />
+        <Button onPress={() => {}}>Entrar</Button>
+        <TextButton>Criar conta grátis</TextButton>
+      </Form>
+    </Container>
+  </GradientBackground>
 );
 
 export default SignIn;
