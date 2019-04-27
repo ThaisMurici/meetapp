@@ -15,7 +15,6 @@ export const Label = styled.Text`
 export const Input = styled.TextInput.attrs({
   placeholderTextColor: colors.whiteTransparent,
 })`
-  height: 24px;
   color: ${colors.light};
   font-size: 20px;
 `;
