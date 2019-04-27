@@ -8,7 +8,7 @@ export default function* auth({ email, password }) {
   try {
     const response = yield call(api.post, '/sessions', { email, password });
 
-    yield put(AuthActions.authSuccess(response.data.token));
+    yield put(AuthActions.authSuccess(response.data.token, response.data.user));
     navigate('Dashboard');
   } catch (err) {
     yield put(AuthActions.authFailure());
