@@ -5,33 +5,38 @@ import { StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { Container, Logo, Form } from './styles';
-import SignInActions from '~/store/ducks/signIn';
+import SignUpActions from '~/store/ducks/signUp';
 
 import Button from '~/components/Button';
 import FormInput from '~/components/FormInput';
 import GradientBackground from '~/components/GradientBackground';
 import TextButton from '~/components/TextButton';
 
-class SignIn extends Component {
+class SignUp extends Component {
   static propTypes = {
-    signInRequest: PropTypes.func.isRequired,
+    signUpRequest: PropTypes.func.isRequired,
     navigation: PropTypes.shape({ navigate: PropTypes.func }).isRequired,
   };
 
   state = {
+    name: '',
     email: '',
     password: '',
+    passwordConfirmation: '',
   };
 
-  signIn = () => {
-    const { email, password } = this.state;
-    const { signInRequest } = this.props;
-
-    signInRequest(email, password);
+  signUp = () => {
+    const {
+      name, email, password, passwordConfirmation,
+    } = this.state;
+    const { signUpRequest } = this.props;
+    signUpRequest(name, email, password, passwordConfirmation);
   };
 
   render() {
-    const { email, password } = this.state;
+    const {
+      name, email, password, passwordConfirmation,
+    } = this.state;
     const { navigation } = this.props;
     return (
       <GradientBackground>
@@ -39,6 +44,12 @@ class SignIn extends Component {
         <Container>
           <Logo>M</Logo>
           <Form>
+            <FormInput
+              label="Nome"
+              placeholder="Digite seu nome"
+              value={name}
+              onChangeText={text => this.setState({ name: text })}
+            />
             <FormInput
               label="E-mail"
               placeholder="Digite seu e-mail"
@@ -52,10 +63,15 @@ class SignIn extends Component {
               secureTextEntry
               onChangeText={text => this.setState({ password: text.trim() })}
             />
-            <Button onPress={this.signIn}>Entrar</Button>
-            <TextButton onPress={() => navigation.navigate('SignUp')}>
-              Criar conta grátis
-            </TextButton>
+            <FormInput
+              label="Confirmação"
+              placeholder="Confirme sua senha"
+              value={passwordConfirmation}
+              secureTextEntry
+              onChangeText={text => this.setState({ passwordConfirmation: text.trim() })}
+            />
+            <Button onPress={this.signUp}>Criar conta</Button>
+            <TextButton onPress={() => navigation.navigate('SignIn')}>Já tenho conta</TextButton>
           </Form>
         </Container>
       </GradientBackground>
@@ -64,13 +80,13 @@ class SignIn extends Component {
 }
 
 const mapStateToProps = state => ({
-  loading: state.signIn.loading,
-  error: state.signIn.error,
+  loading: state.signUp.loading,
+  error: state.signUp.error,
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators(SignInActions, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(SignUpActions, dispatch);
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(SignIn);
+)(SignUp);

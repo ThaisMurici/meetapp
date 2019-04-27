@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 import { colors } from '~/styles';
 
-export const Container = styled.View`
+export const Container = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
   margin-top: 20px;

@@ -1,7 +1,11 @@
 import { combineReducers } from 'redux';
 
-import { reducer as auth } from './auth';
+import { reducer as signIn } from './signIn';
+import { reducer as signUp } from './signUp';
+import { reducer as user } from './user';
 
 export default combineReducers({
-  auth,
+  signIn,
+  signUp,
+  user,
 });
