@@ -6,7 +6,7 @@ import Immutable from 'seamless-immutable';
  */
 const { Types, Creators } = createActions({
   signUpRequest: ['name', 'email', 'password'],
-  signUpSuccess: ['email', 'password'],
+  signUpSuccess: ['email', 'password', 'firstTime'],
   signUpFailure: null,
 });
 

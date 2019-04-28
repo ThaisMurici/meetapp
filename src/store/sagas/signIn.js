@@ -4,8 +4,9 @@ import { navigate } from '~/services/navigation';
 import api from '~/services/api';
 import SignInActions from '~/store/ducks/signIn';
 import UserActions from '~/store/ducks/user';
+import PreferencesActions from '~/store/ducks/preferences';
 
-export default function* signIn({ email, password }) {
+export default function* signIn({ email, password, firstTime }) {
   try {
     const response = yield call(api.post, '/sessions', { email, password });
 
@@ -14,7 +15,13 @@ export default function* signIn({ email, password }) {
     yield put(SignInActions.signInSuccess(response.data.token));
     yield put(UserActions.loadUserSuccess(user));
 
-    navigate('Dashboard');
+    if (firstTime) {
+      yield put(PreferencesActions.loadPreferencesRequest());
+    }
+
+    const nextPage = firstTime ? 'Preferences' : 'Dashboard';
+
+    navigate(nextPage);
   } catch (err) {
     yield put(SignInActions.signInFailure());
   }

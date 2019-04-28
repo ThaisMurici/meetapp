@@ -1,6 +1,5 @@
 import { call, put } from 'redux-saga/effects';
 
-import { navigate } from '~/services/navigation';
 import api from '~/services/api';
 import SignUpActions from '~/store/ducks/signUp';
 
@@ -15,9 +14,9 @@ export default function* signUp({
       password_confirmation: passwordConfirmation,
     });
 
-    yield put(SignUpActions.signUpSuccess(email, password));
+    const firstTime = true;
 
-    navigate('Dashboard');
+    yield put(SignUpActions.signUpSuccess(email, password, firstTime));
   } catch (err) {
     yield put(SignUpActions.signUpFailure());
   }
