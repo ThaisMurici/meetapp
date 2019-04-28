@@ -15,7 +15,7 @@ export default function* updateUser({ id, fieldsToUpdate }) {
     const response = yield call(api.put, `/users/${id}`, fieldsToUpdate, requestConfig);
 
     yield put(UserActions.updateUserSuccess(response.data));
-    navigate('Dashboard');
+    navigate('App');
   } catch (err) {
     yield put(UserActions.updateUserFailure());
   }

@@ -19,7 +19,7 @@ export default function* signIn({ email, password, firstTime }) {
       yield put(PreferencesActions.loadPreferencesRequest());
     }
 
-    const nextPage = firstTime ? 'Preferences' : 'Dashboard';
+    const nextPage = firstTime ? 'Preferences' : 'App';
 
     navigate(nextPage);
   } catch (err) {
