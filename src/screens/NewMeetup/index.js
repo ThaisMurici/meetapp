@@ -113,6 +113,17 @@ class NewMeetup extends Component {
     };
 
     saveNewMeetupRequest(data);
+    this.setState({
+      title: '',
+      description: '',
+      date: '',
+      street: '',
+      number: '',
+      district: '',
+      city: '',
+      state: '',
+      checkboxItems: {},
+    });
   };
 
   render() {
