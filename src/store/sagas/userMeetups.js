@@ -1,9 +1,10 @@
 import { call, put, select } from 'redux-saga/effects';
 
+import { navigate } from '~/services/navigation';
 import api from '~/services/api';
 import UserMeetupsActions from '~/store/ducks/userMeetups';
 
-export default function* loadUserMeetups({ id }) {
+export function* loadUserMeetups({ id }) {
   try {
     const userAuthToken = yield select(state => state.signIn.token.token);
 
@@ -34,5 +35,22 @@ export default function* loadUserMeetups({ id }) {
     yield put(UserMeetupsActions.loadUserMeetupsSuccess(data));
   } catch (err) {
     yield put(UserMeetupsActions.loadUserMeetupsFailure());
+  }
+}
+
+export function* saveNewMeetup({ data }) {
+  try {
+    const userAuthToken = yield select(state => state.signIn.token.token);
+
+    const requestConfig = {
+      headers: { Authorization: `bearer ${userAuthToken}` },
+    };
+
+    yield call(api.post, '/meetups', data, requestConfig);
+
+    yield put(UserMeetupsActions.saveNewMeetupSuccess());
+    navigate('Dashboard');
+  } catch (err) {
+    yield put(UserMeetupsActions.saveNewMeetupFailure());
   }
 }

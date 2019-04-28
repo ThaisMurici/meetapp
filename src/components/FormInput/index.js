@@ -4,11 +4,19 @@ import { PropTypes } from 'prop-types';
 import { Container, Label, Input } from './styles';
 
 const FormInput = ({
-  label, placeholder, value, onChangeText, secureTextEntry,
+  label,
+  placeholder,
+  value,
+  onChangeText,
+  secureTextEntry,
+  small,
+  multiline,
+  numberOfLines,
 }) => (
-  <Container>
-    <Label>{label}</Label>
+  <Container small>
+    <Label small={small}>{label}</Label>
     <Input
+      small={small}
       underlineColorAndroid="transparent"
       autoCapitalize="none"
       autoCorrect={false}
@@ -16,6 +24,8 @@ const FormInput = ({
       placeholder={placeholder}
       onChangeText={onChangeText}
       secureTextEntry={secureTextEntry}
+      multiline={multiline}
+      numberOfLines={numberOfLines}
     />
   </Container>
 );
@@ -23,6 +33,9 @@ const FormInput = ({
 FormInput.defaultProps = {
   onChangeText: () => {},
   secureTextEntry: false,
+  small: false,
+  multiline: false,
+  numberOfLines: 1,
 };
 
 FormInput.propTypes = {
@@ -31,6 +44,9 @@ FormInput.propTypes = {
   onChangeText: PropTypes.func,
   value: PropTypes.string.isRequired,
   secureTextEntry: PropTypes.bool,
+  small: PropTypes.bool,
+  multiline: PropTypes.bool,
+  numberOfLines: PropTypes.number,
 };
 
 export default FormInput;

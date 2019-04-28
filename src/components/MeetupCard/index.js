@@ -22,7 +22,7 @@ const MeetupCard = ({ item }) => (
     <InfoContainer>
       <TextContainer>
         <Title>{item.title}</Title>
-        <LightText>120 membros</LightText>
+        <LightText>{`${item.__meta__.users_count} membro(s)`}</LightText>
       </TextContainer>
       <DetailsIconContainer>
         <DetailsIcon name="chevron-right" size={14} />
