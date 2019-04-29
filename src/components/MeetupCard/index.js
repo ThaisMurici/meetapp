@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { navigate } from '~/services/navigation';
+
 import {
   Container,
   ImageContainer,
@@ -26,7 +28,7 @@ const MeetupCard = ({ item, horizontal }) => (
         <Title>{item.title}</Title>
         <LightText>{`${item.__meta__.users_count} membro(s)`}</LightText>
       </TextContainer>
-      <DetailsIconContainer>
+      <DetailsIconContainer onPress={() => navigate('MeetupDetails', { meetup: item })}>
         <DetailsIcon name="chevron-right" size={14} />
       </DetailsIconContainer>
     </InfoContainer>

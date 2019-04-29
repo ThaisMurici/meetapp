@@ -8,6 +8,7 @@ import {
 import { colors } from '~/styles';
 
 import Dashboard from '~/screens/Dashboard';
+import MeetupDetails from '~/screens/MeetupDetails';
 import NewMeetup from '~/screens/NewMeetup';
 import Profile from '~/screens/Profile';
 import Preferences from '~/screens/Preferences';
@@ -42,6 +43,7 @@ const Routes = createAppContainer(
           },
         ),
         Profile,
+        MeetupDetails,
       },
       { initialRouteName: 'Home', headerMode: 'none' },
     ),

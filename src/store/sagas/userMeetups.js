@@ -78,3 +78,19 @@ export function* searchMeetups({ searchTerm }) {
     yield put(UserMeetupsActions.searchMeetupsFailure());
   }
 }
+
+export function* registerInMeetup({ userId, meetupId }) {
+  try {
+    const userAuthToken = yield select(state => state.signIn.token.token);
+
+    const requestConfig = {
+      headers: { Authorization: `bearer ${userAuthToken}` },
+    };
+
+    yield call(api.post, `/meetups/${meetupId}/register`, { user: userId }, requestConfig);
+
+    yield put(UserMeetupsActions.registerInMeetupSuccess());
+  } catch (err) {
+    yield put(UserMeetupsActions.registerInMeetupFailure());
+  }
+}

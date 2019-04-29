@@ -14,6 +14,9 @@ const { Types, Creators } = createActions({
   searchMeetupsRequest: ['searchTerm'],
   searchMeetupsSuccess: ['data'],
   searchMeetupsFailure: null,
+  registerInMeetupRequest: ['userId', 'meetupId'],
+  registerInMeetupSuccess: null,
+  registerInMeetupFailure: null,
 });
 
 export const UserMeetupsTypes = Types;
@@ -46,4 +49,7 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.SEARCH_MEETUPS_REQUEST]: state => state.merge({ loading: true }),
   [Types.SEARCH_MEETUPS_SUCCESS]: (state, { data }) => state.merge({ data, loading: false, error: false }),
   [Types.SEARCH_MEETUPS_FAILURE]: state => state.merge({ error: true, loading: false }),
+  [Types.REGISTER_IN_MEETUP_REQUEST]: state => state.merge({ loading: true }),
+  [Types.REGISTER_IN_MEETUP_SUCCESS]: state => state.merge({ loading: false, error: false }),
+  [Types.REGISTER_IN_MEETUP_FAILURE]: state => state.merge({ error: true, loading: false }),
 });
