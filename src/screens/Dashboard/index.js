@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import PropTypes from 'prop-types';
 
 import Header from '~/components/Header';
-import HorizontalList from '~/components/HorizontalList';
+import List from '~/components/List';
 import GradientBackground from '~/components/GradientBackground';
 import UserMeetupsActions from '~/store/ducks/userMeetups';
 
@@ -26,6 +26,7 @@ class Dashboard extends Component {
   };
 
   static propTypes = {
+    meetupsData: PropTypes.objectOf(PropTypes.array).isRequired,
     user: PropTypes.shape({
       id: PropTypes.number,
     }).isRequired,
@@ -40,7 +41,7 @@ class Dashboard extends Component {
   }
 
   renderMeetups = (meetupsData, meetupsType) => (meetupsData[meetupsType].length > 0 ? (
-    <HorizontalList data={meetupsData[meetupsType]} />
+    <List horizontal data={meetupsData[meetupsType]} />
   ) : (
     <EmptyStateContainer>
       <EmptyStateText>Nenhum meetup encontrado.</EmptyStateText>

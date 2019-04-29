@@ -11,6 +11,9 @@ const { Types, Creators } = createActions({
   saveNewMeetupRequest: ['data'],
   saveNewMeetupSuccess: null,
   saveNewMeetupFailure: null,
+  searchMeetupsRequest: ['searchTerm'],
+  searchMeetupsSuccess: ['data'],
+  searchMeetupsFailure: null,
 });
 
 export const UserMeetupsTypes = Types;
@@ -24,6 +27,7 @@ export const INITIAL_STATE = Immutable({
     next: [],
     registrations: [],
     recomended: [],
+    search: [],
   },
   loading: false,
   error: false,
@@ -39,4 +43,7 @@ export const reducer = createReducer(INITIAL_STATE, {
   [Types.SAVE_NEW_MEETUP_REQUEST]: state => state.merge({ loading: true }),
   [Types.SAVE_NEW_MEETUP_SUCCESS]: state => state.merge({ loading: false, error: false }),
   [Types.SAVE_NEW_MEETUP_FAILURE]: state => state.merge({ error: true, loading: false }),
+  [Types.SEARCH_MEETUPS_REQUEST]: state => state.merge({ loading: true }),
+  [Types.SEARCH_MEETUPS_SUCCESS]: (state, { data }) => state.merge({ data, loading: false, error: false }),
+  [Types.SEARCH_MEETUPS_FAILURE]: state => state.merge({ error: true, loading: false }),
 });

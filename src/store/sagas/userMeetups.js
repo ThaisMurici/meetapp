@@ -30,6 +30,7 @@ export function* loadUserMeetups({ id }) {
       next: nextMeetups.data,
       registrations: nextRegistrations.data,
       recomended: nextRecomended.data,
+      search: [],
     };
 
     yield put(UserMeetupsActions.loadUserMeetupsSuccess(data));
@@ -52,5 +53,28 @@ export function* saveNewMeetup({ data }) {
     navigate('Dashboard');
   } catch (err) {
     yield put(UserMeetupsActions.saveNewMeetupFailure());
+  }
+}
+
+export function* searchMeetups({ searchTerm }) {
+  try {
+    const userAuthToken = yield select(state => state.signIn.token.token);
+
+    const requestConfig = {
+      headers: { Authorization: `bearer ${userAuthToken}` },
+    };
+
+    const response = yield call(api.get, `/meetups?title=${searchTerm}`, requestConfig);
+
+    const data = {
+      next: [],
+      registrations: [],
+      recomended: [],
+      search: response.data,
+    };
+
+    yield put(UserMeetupsActions.searchMeetupsSuccess(data));
+  } catch (err) {
+    yield put(UserMeetupsActions.searchMeetupsFailure());
   }
 }

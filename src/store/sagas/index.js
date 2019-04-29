@@ -10,7 +10,7 @@ import signIn from './signIn';
 import signUp from './signUp';
 import loadPreferences from './preferences';
 import updateUser from './user';
-import { loadUserMeetups, saveNewMeetup } from './userMeetups';
+import { loadUserMeetups, saveNewMeetup, searchMeetups } from './userMeetups';
 
 export default function* rootSaga() {
   return yield all([
@@ -21,5 +21,6 @@ export default function* rootSaga() {
     takeLatest(UserTypes.UPDATE_USER_REQUEST, updateUser),
     takeLatest(UserMeetupsTypes.LOAD_USER_MEETUPS_REQUEST, loadUserMeetups),
     takeLatest(UserMeetupsTypes.SAVE_NEW_MEETUP_REQUEST, saveNewMeetup),
+    takeLatest(UserMeetupsTypes.SEARCH_MEETUPS_REQUEST, searchMeetups),
   ]);
 }

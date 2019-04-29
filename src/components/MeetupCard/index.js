@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import {
   Container,
@@ -12,10 +13,11 @@ import {
   DetailsIcon,
 } from './styles';
 
-const MeetupCard = ({ item }) => (
-  <Container>
+const MeetupCard = ({ item, horizontal }) => (
+  <Container horizontal={horizontal}>
     <ImageContainer>
       <StyledImage
+        horizontal={horizontal}
         source={{ uri: 'http://www.thesecretcabal.com/portals/0/Site%20Images/Meetup1.jpg' }}
       />
     </ImageContainer>
@@ -30,5 +32,17 @@ const MeetupCard = ({ item }) => (
     </InfoContainer>
   </Container>
 );
+
+MeetupCard.defaultProps = {
+  horizontal: false,
+};
+
+MeetupCard.propTypes = {
+  item: PropTypes.shape({
+    title: PropTypes.string,
+    __meta__: PropTypes.shape({ users_count: PropTypes.string }),
+  }).isRequired,
+  horizontal: PropTypes.bool,
+};
 
 export default MeetupCard;

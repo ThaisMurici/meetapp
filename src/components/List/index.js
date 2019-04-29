@@ -3,21 +3,24 @@ import PropTypes from 'prop-types';
 
 import { FlatList } from 'react-native';
 
-// import { Container } from './styles';
-
 import MeetupCard from '~/components/MeetupCard';
 
-const HorizontalList = ({ data }) => (
+const List = ({ data, horizontal }) => (
   <FlatList
-    horizontal
+    horizontal={horizontal}
     data={data}
-    renderItem={({ item }) => <MeetupCard item={item} />}
+    renderItem={({ item }) => <MeetupCard horizontal={horizontal} item={item} />}
     keyExtractor={item => item.id.toString()}
   />
 );
 
-HorizontalList.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+List.defaultProps = {
+  horizontal: false,
 };
 
-export default HorizontalList;
+List.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
+  horizontal: PropTypes.bool,
+};
+
+export default List;

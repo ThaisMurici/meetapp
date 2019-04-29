@@ -1,17 +1,19 @@
 import styled from 'styled-components/native';
+import { Dimensions } from 'react-native';
 import { colors } from '~/styles';
 
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
+const { width } = Dimensions.get('window');
+
 export const Container = styled.View`
   border-radius: 4px;
-  margin-right: 20px;
+  margin-bottom: ${props => (props.horizontal ? 0 : '20px;')};
+  margin-right: ${props => (props.horizontal ? '20px;' : 0)};
   overflow: hidden;
 `;
 
 export const ImageContainer = styled.View`
-  height: 130px;
-  width: 270px;
   background-color: ${colors.light};
   justify-content: center;
   align-items: center;
@@ -21,7 +23,7 @@ export const ImageContainer = styled.View`
 
 export const StyledImage = styled.Image`
   height: 130px;
-  width: 270px;
+  width: ${props => (props.horizontal ? '270px;' : `${width - 40}px`)};
 `;
 
 export const InfoContainer = styled.View`
