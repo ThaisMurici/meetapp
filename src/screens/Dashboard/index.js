@@ -9,7 +9,7 @@ import List from '~/components/List';
 import GradientBackground from '~/components/GradientBackground';
 import UserMeetupsActions from '~/store/ducks/userMeetups';
 
-import { ActivityIndicator } from 'react-native';
+import { ActivityIndicator, RefreshControl } from 'react-native';
 import {
   Container,
   SectionTitle,
@@ -52,12 +52,20 @@ class Dashboard extends Component {
     </EmptyStateContainer>
   ));
 
+  refreshItems = () => {
+    const { loadUserMeetupsRequest, user } = this.props;
+
+    loadUserMeetupsRequest(user.id);
+  };
+
   render() {
     const { meetupsData, loading } = this.props;
     return (
       <GradientBackground>
         <Header title="Início" />
-        <Container>
+        <Container
+          refreshControl={<RefreshControl refreshing={loading} onRefresh={this.refreshItems} />}
+        >
           <SectionTitle>Inscrições</SectionTitle>
           {loading ? (
             <LoadingContainer>
