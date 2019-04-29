@@ -2,12 +2,14 @@ import {
   createAppContainer,
   createSwitchNavigator,
   createBottomTabNavigator,
+  createStackNavigator,
 } from 'react-navigation';
 
 import { colors } from '~/styles';
 
 import Dashboard from '~/screens/Dashboard';
 import NewMeetup from '~/screens/NewMeetup';
+import Profile from '~/screens/Profile';
 import Preferences from '~/screens/Preferences';
 import Search from '~/screens/Search';
 import SignIn from '~/screens/SignIn';
@@ -18,24 +20,30 @@ const Routes = createAppContainer(
     SignIn,
     SignUp,
     Preferences,
-    App: createBottomTabNavigator(
+    App: createStackNavigator(
       {
-        NewMeetup,
-        Dashboard,
-        Search,
-      },
-      {
-        initialRouteName: 'Dashboard',
-        tabBarOptions: {
-          showIcon: true,
-          showLabel: false,
-          activeTintColor: colors.white,
-          inactiveTintColor: colors.whiteTransparent,
-          style: {
-            backgroundColor: colors.primary,
+        Home: createBottomTabNavigator(
+          {
+            NewMeetup,
+            Dashboard,
+            Search,
           },
-        },
+          {
+            initialRouteName: 'Dashboard',
+            tabBarOptions: {
+              showIcon: true,
+              showLabel: false,
+              activeTintColor: colors.white,
+              inactiveTintColor: colors.whiteTransparent,
+              style: {
+                backgroundColor: colors.primary,
+              },
+            },
+          },
+        ),
+        Profile,
       },
+      { initialRouteName: 'Home', headerMode: 'none' },
     ),
   }),
 );

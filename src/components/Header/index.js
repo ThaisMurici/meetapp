@@ -1,8 +1,8 @@
 import React from 'react';
-
+import { StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { StatusBar } from 'react-native';
+import { navigate } from '~/services/navigation';
 
 import {
   Container, LeftItem, Title, RightItem, CustomIcon,
@@ -16,7 +16,7 @@ const Header = ({ title }) => (
     </LeftItem>
     <Title>{title}</Title>
     <RightItem>
-      <CustomIcon name="user" size={16} />
+      <CustomIcon name="user" size={16} onPress={() => navigate('Profile')} />
     </RightItem>
   </Container>
 );
