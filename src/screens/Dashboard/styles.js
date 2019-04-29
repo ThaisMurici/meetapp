@@ -3,7 +3,6 @@ import { colors } from '~/styles';
 
 export const Container = styled.ScrollView`
   padding-left: 20px;
-  padding-right: 20px;
 `;
 
 export const LoadingContainer = styled.View`
