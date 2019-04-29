@@ -20,6 +20,10 @@ import {
 
 const TabIcon = ({ tintColor }) => <Icon name="search" size={20} color={tintColor} />;
 
+TabIcon.propTypes = {
+  tintColor: PropTypes.string.isRequired,
+};
+
 class Search extends Component {
   static navigationOptions = {
     tabBarIcon: TabIcon,

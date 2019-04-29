@@ -22,6 +22,10 @@ import {
 
 const TabIcon = ({ tintColor }) => <Icon name="plus-square" size={20} color={tintColor} />;
 
+TabIcon.propTypes = {
+  tintColor: PropTypes.string.isRequired,
+};
+
 class NewMeetup extends Component {
   static navigationOptions = {
     tabBarIcon: TabIcon,
